@@ -41,17 +41,15 @@ module.exports = function(controller) {
                 
                 console.log('hello');          
           
-                var req = new Request(url);
+                var request = new XMLHttpRequest();
+                request.open('GET', url);
+                request.responseType = 'json';
+                request.send();
 
-                console.log('hello');
-          
-                fetch(req)
-
-                    .then(function(response) {
-                        console.log(response.json());
-                    })
-          
-                console.log('hello');
+                request.onload = function() {
+                    var news = request.response;
+                    console.log(news);
+                }
             
         });
 
