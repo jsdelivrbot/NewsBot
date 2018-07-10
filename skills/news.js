@@ -27,14 +27,14 @@ module.exports = function(controller) {
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
     // Validate user input: question_1
-    controller.studio.validate('What&#x27;s the deal?','question_1', function(convo, next) {
+    controller.studio.validate('What&#x27;s the news','question_1', function(convo, next) {
 
         var value = convo.extractResponse('question_1');
 
         // test or validate value somehow
         // can call convo.gotoThread() to change direction of conversation
 
-        console.log('VALIDATE: What&#x27;s the news? VARIABLE: question_1');
+        console.log('VALIDATE: What&#x27;s the news? VARIABLE: cool');
 
         // always call next!
         next();
