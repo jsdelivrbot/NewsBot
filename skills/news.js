@@ -28,24 +28,27 @@ module.exports = function(controller) {
 
                 if(mm<10) {
                     mm = '0' + mm
-                } 
+                }
 
                 today = yyyy + '-' + mm + '-' + dd;
-                document.write(today);
+          
+            convo.say(today);
           
                 var url = 'https://newsapi.org/v2/everything?' +
                 'q=MetLife&' +
-                'from=&' +
-                today +
+                'from=' +
+                today + '&' +
                 'sortBy=popularity&' +
                 'apiKey=ac625565dfc847019c3369e3c4b3ea73';
+          
+          convo.say(url);
 
                 var req = new Request(url);
 
                 fetch(req)
 
                     .then(function(response) {
-                        console.log(response.json());
+                        convo.say(response.json());
                     })
             
         });
