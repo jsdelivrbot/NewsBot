@@ -34,11 +34,11 @@ module.exports = function(controller) {
           
             convo.say(today);
           
-                var url = 'https://newsapi.org/v2/top-headlines?' +
+                var url = 'https://newsapi.org/v2/everything?' +
                 'q=MetLife&' +
                 'sortBy=popularity&' +
                 'apiKey=ac625565dfc847019c3369e3c4b3ea73';
-
+                
                 var req = new Request(url);
 
                 fetch(req)
