@@ -33,20 +33,20 @@ module.exports = function(controller) {
                 today = yyyy + '-' + mm + '-' + dd;
                 document.write(today);
           
-          var url = 'https://newsapi.org/v2/everything?' +
-          'q=MetLife&' +
-          'from=&' +
-          today +
-          'sortBy=popularity&' +
-          'apiKey=ac625565dfc847019c3369e3c4b3ea73';
+                var url = 'https://newsapi.org/v2/everything?' +
+                'q=MetLife&' +
+                'from=&' +
+                today +
+                'sortBy=popularity&' +
+                'apiKey=ac625565dfc847019c3369e3c4b3ea73';
 
-          var req = new Request(url);
+                var req = new Request(url);
 
-          fetch(req)
-          
-              .then(function(response) {
-                  console.log(response.json());
-              })
+                fetch(req)
+
+                    .then(function(response) {
+                        console.log(response.json());
+                    })
             
         });
 
