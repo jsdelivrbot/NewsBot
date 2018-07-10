@@ -27,7 +27,7 @@ module.exports = function(controller) {
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
     // Validate user input: question_1
-    controller.studio.validate('What&#x27;s the news?','question_1', function(convo, next) {
+    controller.studio.validate('What&#x27;s the deal?','question_1', function(convo, next) {
 
         var value = convo.extractResponse('question_1');
 
