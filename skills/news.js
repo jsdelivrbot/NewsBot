@@ -26,21 +26,24 @@ module.exports = function(controller) {
     // See: https://botkit.ai/docs/readme-studio.html#controllerstudiovalidate
     /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
-    // Validate user input: question_1
-    controller.studio.validate('What&#x27;s the news','question_1', function(convo, next) {
+  
+  controller.hears(['What&#x27;s the news?'], 'direct_message,direct_mention', function(bot, message) {
 
-        var value = convo.extractResponse('question_1');
+        bot.startConversation(message, function(err, convo) {
+            convo.say('Let me see...');
 
-        // test or validate value somehow
-        // can call convo.gotoThread() to change direction of conversation
+            convo.ask('What do you want to know?', function(response, convo) {
 
-        console.log('VALIDATE: What&#x27;s the news? VARIABLE: cool');
+                convo.say('Cool, I want to know about ' + response.text + ' too!');
+                convo.next();
 
-        // always call next!
-        next();
+            });
+        });
 
     });
 
+
+  
     // Validate user input: question_2
     controller.studio.validate('What&#x27;s the news?','question_2', function(convo, next) {
 
