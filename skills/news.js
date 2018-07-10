@@ -39,13 +39,19 @@ module.exports = function(controller) {
                 'sortBy=popularity&' +
                 'apiKey=ac625565dfc847019c3369e3c4b3ea73';
                 
+                console.log('hello');          
+          
                 var req = new Request(url);
 
+                console.log('hello');
+          
                 fetch(req)
 
                     .then(function(response) {
                         console.log(response.json());
                     })
+          
+                console.log('hello');
             
         });
 
