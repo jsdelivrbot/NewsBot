@@ -34,21 +34,17 @@ module.exports = function(controller) {
           
             convo.say(today);
           
-                var url = 'https://newsapi.org/v2/everything?' +
+                var url = 'https://newsapi.org/v2/top-headlines?' +
                 'q=MetLife&' +
-                'from=' +
-                today + '&' +
                 'sortBy=popularity&' +
                 'apiKey=ac625565dfc847019c3369e3c4b3ea73';
-          
-          convo.say(url);
 
                 var req = new Request(url);
 
                 fetch(req)
 
                     .then(function(response) {
-                        convo.say(response.json());
+                        console.log(response.json());
                     })
             
         });
