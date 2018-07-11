@@ -49,11 +49,13 @@ module.exports = function(controller) {
                 }).then(response => {
                   
                    console.log(response);
+                   console.log(response.totalResults);
+                   var numero = response.totalResults;
+                   convo.say(numero);
                   
                 });
           
-            convo.say(obj.articles[0].title);
-            
+            convo.next();
         });
 
     });
