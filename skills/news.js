@@ -49,7 +49,7 @@ module.exports = function(controller) {
                    console.log(response);
                    console.log(response.articles[0].author);
                    var numero = response.totalResults;
-                   convo.say(response.articles[0].author);
+                   convo.say(JSON.stringify(response.articles[0].author));
                   
                 });
           
