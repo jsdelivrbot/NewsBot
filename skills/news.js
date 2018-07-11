@@ -34,8 +34,6 @@ module.exports = function(controller) {
 
                 today = yyyy + '-' + mm + '-' + dd;
           
-            convo.say(today);
-          
             var obj;
           
                 newsapi.v2.topHeadlines({
