@@ -47,9 +47,9 @@ module.exports = function(controller) {
                 }).then(response => {
                   
                    console.log(response);
-                   console.log(response.totalResults);
+                   console.log(response.articles[0].author);
                    var numero = response.totalResults;
-                   convo.say(numero);
+                   convo.say(response.articles[0].author);
                   
                 });
           
