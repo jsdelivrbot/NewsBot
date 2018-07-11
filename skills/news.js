@@ -38,7 +38,11 @@ module.exports = function(controller) {
           
                 newsapi.v2.topHeadlines({
                   
-                  q: 'metlife',
+                  q: 'insurance',
+                  
+                  category: 'business',
+                  
+                  language: 'en'
                   
                 }).then(response => {
                   
