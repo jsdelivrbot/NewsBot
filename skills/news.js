@@ -9,6 +9,8 @@ through the conversation are chosen based on the user's response.
 
 */
 
+const NewsAPI = require('newsapi');
+const newsapi = new NewsAPI('ac625565dfc847019c3369e3c4b3ea73');
 
 module.exports = function(controller) {
 
@@ -34,22 +36,15 @@ module.exports = function(controller) {
           
             convo.say(today);
           
-                var url = 'https://newsapi.org/v2/everything?' +
-                'q=MetLife&' +
-                'sortBy=popularity&' +
-                'apiKey=ac625565dfc847019c3369e3c4b3ea73';
-                
-                console.log('hello');          
-          
-                var request = new XMLHttpRequest();
-                request.open('GET', url);
-                request.responseType = 'json';
-                request.send();
-
-                request.onload = function() {
-                    var news = request.response;
-                    console.log(news);
-                }
+                newsapi.v2.topHeadlines({
+                  
+                  q: 'metlife',
+                  
+                }).then(response => {
+                  
+                  console.log(response);
+                  
+                });
             
         });
 
