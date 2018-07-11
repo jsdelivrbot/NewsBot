@@ -36,6 +36,8 @@ module.exports = function(controller) {
           
             convo.say(today);
           
+            var obj;
+          
                 newsapi.v2.topHeadlines({
                   
                   q: 'insurance',
@@ -46,13 +48,16 @@ module.exports = function(controller) {
                   
                 }).then(response => {
                   
-                  console.log(response);
+                   console.log(response);
                   
                 });
+          
+            convo.say(obj.articles[0].title);
             
         });
 
     });
 
 };
+
 
