@@ -47,8 +47,7 @@ module.exports = function(controller) {
                 }).then(response => {
                   
                    console.log(response);
-                   convo.say(response.articles[0].author);
-                   convo.say(response.articles[0].author);
+                   convo.say(response.articles[0].author + '\ ' + response.articles[0].author);
                    
                   
                 });
