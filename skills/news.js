@@ -47,9 +47,9 @@ module.exports = function(controller) {
                 }).then(response => {
                   
                    console.log(response);
-                   console.log(response.articles[0].author);
-                   //var obj = JSON.parse(response)
-                   //console.log(obj.articles[0].author);
+                   convo.say(response.articles[0].author);
+                   convo.say(response.articles[0].author);
+                   
                   
                 });
           
