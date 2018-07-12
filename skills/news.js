@@ -38,7 +38,7 @@ module.exports = function(controller) {
           
                 newsapi.v2.everything({
                   
-                  category: 'business',
+                  q: 'MetLife',
                   
                   language: 'en',
                   
@@ -48,17 +48,24 @@ module.exports = function(controller) {
                   
                     console.log(response);
                   
-                    if(response.articles[0]){
+                    if(response.articles[0].title){
                     
                       convo.say(response.articles[0].title + '\n' + response.articles[0].author + 
                              '\n' + response.articles[0].description);
+                      convo.next();
                     
-                  }
+                      console.log('Articles found');
+                      
+                    } else { 
+                      
+                      convo.say('There were no top articles on insurance today'); 
+                      convo.next();
+                      
+                           }
                    
                   
                 });
           
-            convo.next();
         });
 
     });
