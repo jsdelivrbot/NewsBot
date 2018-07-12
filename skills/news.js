@@ -36,18 +36,24 @@ module.exports = function(controller) {
           
             var obj;
           
-                newsapi.v2.topHeadlines({
-                  
-                  q: 'insurance',
+                newsapi.v2.everything({
                   
                   category: 'business',
                   
-                  language: 'en'
+                  language: 'en',
+                  
+                  sortBy: 'popularity'
                   
                 }).then(response => {
                   
-                   console.log(response);
-                   convo.say(response.articles[0].author + '\ ' + response.articles[0].author);
+                    console.log(response);
+                  
+                    if(response.articles[0]){
+                    
+                      convo.say(response.articles[0].title + '\n' + response.articles[0].author + 
+                             '\n' + response.articles[0].description);
+                    
+                  }
                    
                   
                 });
