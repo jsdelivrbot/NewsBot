@@ -48,8 +48,8 @@ module.exports = function(controller) {
                   
                    console.log(response);
                    console.log(response.articles[0].author);
-                   var obj = JSON.parse(response)
-                   convo.say(obj.articles[0].author);
+                   //var obj = JSON.parse(response)
+                   //console.log(obj.articles[0].author);
                   
                 });
           
