@@ -49,8 +49,13 @@ module.exports = function(controller) {
                   
                     if(response.articles[0].title){
                     
-                      convo.say('<b>' + response.articles[0].title + '</b'\n' + response.articles[0].author + 
-                             '\n' + response.articles[0].description);
+                      bot.reply(message, {   
+                                
+                              'text': '<a href="'+ response.articles[0].url + '"><strong>' + response.articles[0].title + 
+                                '</strong></a>' + response.articles[0].title + '\n' + response.articles[0].author + 
+                                '\n' + response.articles[0].description
+                      });
+                      
                       convo.next();
                     
                       console.log('Articles found');
