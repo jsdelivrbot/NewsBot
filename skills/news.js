@@ -72,6 +72,7 @@ module.exports = function(controller) {
                                 
                         i++;
                       }
+                      convo.next();
                       
                       bot.reply(message, {   
                                 

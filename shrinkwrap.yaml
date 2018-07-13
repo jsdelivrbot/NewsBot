@@ -3165,6 +3165,7 @@ packages:
     dev: false
     name: reconnect-core
     resolution:
+      registry: 'https://registry.npmjs.org/'
       tarball: 'https://github.com/dodo/reconnect-core/tarball/merged'
     version: 0.0.1
 registry: 'https://registry.npmjs.org/'
