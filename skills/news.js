@@ -64,17 +64,17 @@ module.exports = function(controller) {
                     
                       console.log(response.totalResults + " articles found");
                       
-                      var i = 0;
-                      var insuranceArticles;
                       
+                      var insuranceArticles = '<'+ response.articles[0].url + '|*' + response.articles[0].title + '*>\n*' + response.articles[0].source + 
+                                '*\n' + response.articles[0].description + '\n';
+                      
+                      var i = 1;
                       while(i < 3){
-                        insuranceArticles = insuranceArticles + '<a href="'+ response.articles[i].url + '"><strong>' + response.articles[i].title + 
-                                '</strong></a>' + '\n' + response.articles[i].author + 
-                                '\n' + response.articles[i].description + '\n';
+                        insuranceArticles = insuranceArticles + '<'+ response.articles[i].url + '|*' + response.articles[i].title + '*>\n*' + response.articles[i].source + 
+                                '*\n' + response.articles[i].description + '\n';
                                 
                         i++;
                       }
-                      convo.next();
                       
                       bot.reply(message, {   
                                 
