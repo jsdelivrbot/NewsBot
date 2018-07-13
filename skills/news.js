@@ -62,11 +62,20 @@ module.exports = function(controller) {
                     
                       console.log(response.totalResults + " articles found");
                       
+                      var i = 0;
+                      var insuranceArticles;
+                      
+                      while(i < 4){
+                        insuranceArticles = insuranceArticles + '<a href="'+ response.articles[i].url + '"><strong>' + response.articles[i].title + 
+                                '</strong></a>' + response.articles[i].title + '\n' + response.articles[i].author + 
+                                '\n' + response.articles[i].description;
+                                
+                        i++;
+                      }
+                      
                       bot.reply(message, {   
                                 
-                              'text': '<a href="'+ response.articles[0].url + '"><strong>' + response.articles[0].title + 
-                                '</strong></a>' + response.articles[0].title + '\n' + response.articles[0].author + 
-                                '\n' + response.articles[0].description
+                              'text': insuranceArticles
                       });
                       
                       convo.next();
