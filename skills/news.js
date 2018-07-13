@@ -78,9 +78,42 @@ module.exports = function(controller) {
                         i++;
                       }
                       
+                      
+                  newsapi.v2.everything({
+                  
+                  q: 'MetLife',
+                  
+                  from: weekAgo,
+                  
+                  to: today,
+                  
+                  language: 'en',
+                  
+                  sortBy: 'popularity',
+                  
+                  page: 1
+                  
+                }).then(response => {
+                  
+                    if(response.articles[0].title){
+                    
+                      console.log(response.totalResults + " articles found");
+                      
+                      
+                      var metArticles = '<'+ response.articles[0].url + '|*' + response.articles[0].title + '*>\n*' + 
+                          response.articles[0].source.name + '*\n' + response.articles[0].description + '\n';
+                      
+                      var i = 1;
+                      while(i < 3){
+                        metArticles = metArticles + '<'+ response.articles[i].url + '|*' + response.articles[i].title + '*>\n*' + 
+                          response.articles[i].source.name + '*\n' + response.articles[i].description + '\n';
+                        
+                        i++;
+                      }
+                      
                       bot.reply(message, {   
                                 
-                              'text': insuranceArticles
+                              'text': 'Top Articles on MetLife this Week' metArticles + insuranceArticles
                       });
                       
                       convo.stop();
