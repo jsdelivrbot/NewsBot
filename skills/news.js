@@ -46,7 +46,7 @@ module.exports = function(controller) {
           
                 newsapi.v2.everything({
                   
-                  q: 'MetLife',
+                  q: 'Insurance',
                   
                   from: weekAgo,
                   
@@ -65,10 +65,10 @@ module.exports = function(controller) {
                       var i = 0;
                       var insuranceArticles;
                       
-                      while(i < 4){
+                      while(i < 3){
                         insuranceArticles = insuranceArticles + '<a href="'+ response.articles[i].url + '"><strong>' + response.articles[i].title + 
-                                '</strong></a>' + response.articles[i].title + '\n' + response.articles[i].author + 
-                                '\n' + response.articles[i].description;
+                                '</strong></a>' + '\n' + response.articles[i].author + 
+                                '\n' + response.articles[i].description + '\n';
                                 
                         i++;
                       }
