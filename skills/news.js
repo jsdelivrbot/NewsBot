@@ -14,7 +14,7 @@ const newsapi = new NewsAPI('ac625565dfc847019c3369e3c4b3ea73');
 
 module.exports = function(controller) {
 
-    controller.hears(['news'], 'direct_message,direct_mention', function(bot, message) {
+    controller.hears(['news'], 'direct_message', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
 
@@ -72,7 +72,9 @@ module.exports = function(controller) {
                       while(i < 3){
                         insuranceArticles = insuranceArticles + '<'+ response.articles[i].url + '|*' + response.articles[i].title + '*>\n*' + 
                           response.articles[i].source.name + '*\n' + response.articles[i].description + '\n';
-                           
+                        
+                        console.log(i);
+                        
                         i++;
                       }
                       
@@ -81,7 +83,7 @@ module.exports = function(controller) {
                               'text': insuranceArticles
                       });
                       
-                      convo.next();
+                      convo.stop();
                       
                     } else { 
                       
