@@ -44,11 +44,13 @@ module.exports = function(controller) {
 
                 var weekAgo = yyyy + '-' + mm + '-' + dd;
           
-                console.log('today: '
-          
                 newsapi.v2.everything({
                   
                   q: 'MetLife',
+                  
+                  from: weekAgo,
+                  
+                  to: today,
                   
                   language: 'en',
                   
@@ -56,10 +58,10 @@ module.exports = function(controller) {
                   
                 }).then(response => {
                   
-                    console.log(response);
-                  
                     if(response.articles[0].title){
                     
+                      console.log(response.totalResults + " articles found");
+                      
                       bot.reply(message, {   
                                 
                               'text': '<a href="'+ response.articles[0].url + '"><strong>' + response.articles[0].title + 
@@ -68,12 +70,12 @@ module.exports = function(controller) {
                       });
                       
                       convo.next();
-                    
-                      console.log('Articles found');
                       
                     } else { 
                       
-                      convo.say('There were no top articles on insurance today'); 
+                      console.log('No articles found');
+                      
+                      convo.say('There were no top articles on insurance this week'); 
                       convo.next();
                       
                            }
