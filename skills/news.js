@@ -11,6 +11,8 @@ through the conversation are chosen based on the user's response.
 
 const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI('ac625565dfc847019c3369e3c4b3ea73');
+var insuranceArticles;
+var metArticles;
 
 module.exports = function(controller) {
 
@@ -63,9 +65,8 @@ module.exports = function(controller) {
                     if(response.articles[0].title){
                     
                       console.log(response.totalResults + " articles found");
-                      
-                      
-                      var insuranceArticles = '<'+ response.articles[0].url + '|*' + response.articles[0].title + '*>\n*' + 
+                          
+                      insuranceArticles = '<'+ response.articles[0].url + '|*' + response.articles[0].title + '*>\n*' + 
                           response.articles[0].source.name + '*\n' + response.articles[0].description + '\n';
                       
                       var i = 1;
@@ -77,9 +78,67 @@ module.exports = function(controller) {
                         
                         i++;
                       }
+                         
+                    
+                    } else { 
                       
+                      console.log('No articles found');
                       
-                  newsapi.v2.everything({
+                      convo.say('There were no top articles on insurance this week'); 
+                      convo.next();
+                      
+                           }
+                   
+                  
+                });
+          
+                newsapi.v2.everything({
+                  
+                  q: 'Insurance',
+                  
+                  from: weekAgo,
+                  
+                  to: today,
+                  
+                  language: 'en',
+                  
+                  sortBy: 'popularity',
+                  
+                  page: 1
+                  
+                }).then(response => {
+                  
+                    if(response.articles[0].title){
+                    
+                      console.log(response.totalResults + " articles found");
+                          
+                      insuranceArticles = '<'+ response.articles[0].url + '|*' + response.articles[0].title + '*>\n*' + 
+                          response.articles[0].source.name + '*\n' + response.articles[0].description + '\n';
+                      
+                      var i = 1;
+                      while(i < 3){
+                        insuranceArticles = insuranceArticles + '<'+ response.articles[i].url + '|*' + response.articles[i].title + '*>\n*' + 
+                          response.articles[i].source.name + '*\n' + response.articles[i].description + '\n';
+                        
+                        console.log(i);
+                        
+                        i++;
+                      }
+                         
+                    
+                    } else { 
+                      
+                      console.log('No articles found');
+                      
+                      convo.say('There were no top articles on insurance this week'); 
+                      convo.next();
+                      
+                           }
+                   
+                  
+                });
+                
+                newsapi.v2.everything({
                   
                   q: 'MetLife',
                   
@@ -98,9 +157,8 @@ module.exports = function(controller) {
                     if(response.articles[0].title){
                     
                       console.log(response.totalResults + " articles found");
-                      
-                      
-                      var metArticles = '<'+ response.articles[0].url + '|*' + response.articles[0].title + '*>\n*' + 
+                          
+                      metArticles = '<'+ response.articles[0].url + '|*' + response.articles[0].title + '*>\n*' + 
                           response.articles[0].source.name + '*\n' + response.articles[0].description + '\n';
                       
                       var i = 1;
@@ -108,27 +166,31 @@ module.exports = function(controller) {
                         metArticles = metArticles + '<'+ response.articles[i].url + '|*' + response.articles[i].title + '*>\n*' + 
                           response.articles[i].source.name + '*\n' + response.articles[i].description + '\n';
                         
+                        console.log(i);
+                        
                         i++;
                       }
-                      
-                      bot.reply(message, {   
-                                
-                              'text': 'Top Articles on MetLife this Week' metArticles + insuranceArticles
-                      });
-                      
-                      convo.stop();
-                      
+                         
+                    
                     } else { 
                       
                       console.log('No articles found');
-                      
-                      convo.say('There were no top articles on insurance this week'); 
+ 
+                      convo.say('There were no top articles on MetLife this week'); 
                       convo.next();
                       
                            }
                    
                   
-                });
+                }); 
+          
+          
+                bot.reply(message, {   
+                                
+                              'text': 'Top Articles on MetLife\n' + metArticles + 'Top Articles on Insurance\n' + insuranceArticles
+                      });
+                      
+                      convo.stop();     
           
         });
 
