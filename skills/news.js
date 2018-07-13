@@ -54,7 +54,9 @@ module.exports = function(controller) {
                   
                   language: 'en',
                   
-                  sortBy: 'popularity'
+                  sortBy: 'popularity',
+                  
+                  page: 1
                   
                 }).then(response => {
                   
