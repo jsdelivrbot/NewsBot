@@ -18,6 +18,7 @@ module.exports = function(controller) {
 
         bot.startConversation(message, function(err, convo) {
 
+                //gets todays date in the correct format for API
                 var today = new Date();
                 var dd = today.getDate();
                 var mm = today.getMonth()+1; //January is 0!
@@ -32,6 +33,12 @@ module.exports = function(controller) {
                 }
 
                 today = yyyy + '-' + mm + '-' + dd;
+          
+                //gets the date 1 week ago in correct format for API
+                var oneWeekAgo = new Date();
+                oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+          
+                
           
             var obj;
           
