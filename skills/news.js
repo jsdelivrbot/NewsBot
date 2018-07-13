@@ -17,7 +17,6 @@ module.exports = function(controller) {
     controller.hears(['news'], 'direct_message,direct_mention', function(bot, message) {
 
         bot.startConversation(message, function(err, convo) {
-            convo.say('Hmm let me think...');
 
                 var today = new Date();
                 var dd = today.getDate();
@@ -50,7 +49,7 @@ module.exports = function(controller) {
                   
                     if(response.articles[0].title){
                     
-                      convo.say(response.articles[0].title + '\n' + response.articles[0].author + 
+                      convo.say('<b>' + response.articles[0].title + '</b'\n' + response.articles[0].author + 
                              '\n' + response.articles[0].description);
                       convo.next();
                     
