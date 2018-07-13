@@ -38,9 +38,13 @@ module.exports = function(controller) {
                 var oneWeekAgo = new Date();
                 oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
           
-                
+                dd = oneWeekAgo.getDate();
+                mm = oneWeekAgo.getMonth()+1; //January is 0!
+                yyyy = oneWeekAgo.getFullYear();
+
+                var weekAgo = yyyy + '-' + mm + '-' + dd;
           
-            var obj;
+                console.log('today: '
           
                 newsapi.v2.everything({
                   
