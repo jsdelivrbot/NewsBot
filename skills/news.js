@@ -147,8 +147,6 @@ function queryToSlack(q, n) {
                     else { color = "#000000"; }
                     
                     if(response.articles[0].title){
-                    
-                      console.log(response.totalResults + " articles found");
                           
                      var articles = '\{"fallback": "News on ' + q + '"' +
                           ',\n"color": "' + color + 
