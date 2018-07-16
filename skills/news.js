@@ -102,17 +102,15 @@ function queryToSlack(q, n) {
                       
                       var i = 1;
                       while(i < n){
-                        articles = articles + '
+                        articles = articles + '\{"fallback": "News on"' + q + 
+                          ',\n"color": ' + color + 
+                          ',\n"author_name": ' + response.articles[i].source.name + 
+                          ',\n"title": ' + response.articles[i].title + 
+                          ',\n"title_link": ' + response.articles[i].url + 
+                          ',\n"text": ' + response.articles[i].description,
+                          ',\n"ts": 123456789}';
                         
-                          {
-                              \"fallback\": \"News on\"' + q + ',
-                              "color": color,
-                              "author_name": response.articles[i].source.name,
-                              "title": response.articles[i].title,
-                              "title_link": response.articles[i].url,
-                              "text": response.articles[i].description,
-                              "ts": 123456789
-                          }';
+                        console.log(articles);
                         
                         i++;
                       }
