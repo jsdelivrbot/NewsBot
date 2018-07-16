@@ -38,7 +38,7 @@ module.exports = function(controller) {
 };
 
 
-var queryToSlack = function (q, n) {
+function queryToSlack(q, n) {
   
   var today = new Date();
   var dd = today.getDate();
