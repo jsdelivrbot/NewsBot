@@ -16,75 +16,11 @@ module.exports = function(controller) {
 
                 queryToSlack('MetLife', 3).then(function (metNews) {
                   
-                  queryToSlack('Insurance', 3).then(function (insuranceNews) {
-                    
-                    console.log(metNews);
                   
-                    //var message = '"attachments": [' + 
-                                          metNews +
-                                          ']'
+                  //console.log(metNews);
+                    var out = '"attachments": [' + metNews + ']';
                     
-                    //console.log(message);
-                    
-                    bot.reply(message, {
-                      
-                          "attachments": [
-                                
-                            {"fallback": "News on MetLife",
-
-                            "color": "#a4ce4e",
-
-                            "author_name": "Gizmodo.com",
-
-                            "title": "LifeLock Still Gives NRA Discount It Said It Ended After Parkland School Shooting",
-
-                            "title_link": "https://gizmodo.com/lifelock-still-gives-nra-discount-it-said-it-ended-afte-1827556508",
-
-                            "text": "After the Parkland, Florida, school shooting last year, in which 17 students and staff at Marjory Stoneman Douglas High School were killed, a slew of companies sought to distance themselves from the National Rifle Association. Read more...",
-
-                            "ts": "123456789"
-                            },
-
-                            {
-
-                            "fallback": "News on MetLife",
-
-                            "color": "#a4ce4e",
-
-                            "author_name": "Deadspin.com",
-
-                            "title": "ROH And NJPW Just Ended WWE's 58-Year Stranglehold On Madison Square Garden",
-
-                            "title_link": "https://deadspin.com/roh-njpw-just-ended-wwes-58-year-stranglehold-on-madi-1827579733",
-
-                            "text": "Decades of pro wrestling history were upended via joint press release on Thursday when Ring of Honor, New Japan, and Madison Square Garden announced a joint show at “The World’s Most Famous Arena” for April 6, 2019. Unless an unannounced (but previously repor…",
-
-                            "ts": "123456789"
-
-                            },
-
-                            {
-
-                            "fallback": "News on MetLife",
-
-                            "color": "#a4ce4e",
-
-                            "author_name": "Smallbiztrends.com",
-
-                            "title": "Job Market Remains Tight Despite Swelling Labor Force, SBE Council Reports",
-
-                            "title_link": "https://smallbiztrends.com/2018/07/2018-june-jobs-report.html",
-
-                            "text": "According to the 2018 June Jobs Report, one of the challenges small businesses are facing in finding talent to spur some growth is a thin pool of talent.",
-
-                            "ts": "123456789"
-
-                            },
-                          ]
-                      
-                    });
-                  
-                  });
+                    console.log(out);
                 
                 });
               
@@ -166,6 +102,15 @@ function queryToSlack(q, n) {
                         
                         i++;
                       }
+                      
+                      articles = articles + '\{\n"fallback": "News on ' + q + '"' +
+                          ',\n"color": "' + color + 
+                          '",\n"author_name": "' + response.articles[i].source.name + 
+                          '",\n"title": "' + response.articles[i].title + 
+                          '",\n"title_link": "' + response.articles[i].url + 
+                          '",\n"text": "' + response.articles[i].description +
+                          '",\n"ts": "123456789"\n}';
+                        
                       
                       return articles;
                     
