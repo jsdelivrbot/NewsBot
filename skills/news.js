@@ -11,8 +11,6 @@ through the conversation are chosen based on the user's response.
 
 const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI('ac625565dfc847019c3369e3c4b3ea73');
-var insuranceArticles;
-var metArticles;
 
 module.exports = function(controller) {
 
@@ -21,14 +19,17 @@ module.exports = function(controller) {
         bot.startConversation(message, function(err, convo) {
 
                 var metNews = queryToSlack('MetLife', 3);
+                console.log(metNews);
+              
                 var insuranceNews = queryToSlack('Insurance', 3);
+                console.log(insuranceNews);
           
                 bot.reply(message, {   
                                 
-                              'text': 'Top Articles on MetLife\n' + metNews + 'Top Articles on Insurance\n' + insuranceArticles
+                              'text': 'Top Articles on MetLife\n' + metNews + 'Top Articles on Insurance\n' + insuranceNews
                       });
                       
-                      convo.stop();     
+                convo.stop();
           
         });
 
@@ -38,8 +39,6 @@ module.exports = function(controller) {
 
 
 var queryToSlack = function (q, n) {
- 
-  var articles;
   
   var today = new Date();
   var dd = today.getDate();
@@ -87,7 +86,7 @@ var queryToSlack = function (q, n) {
                     
                       console.log(response.totalResults + " articles found");
                           
-                      articles = '<'+ response.articles[0].url + '|*' + response.articles[0].title + '*>\n*' + 
+                     var articles = '<'+ response.articles[0].url + '|*' + response.articles[0].title + '*>\n*' + 
                           response.articles[0].source.name + '*\n' + response.articles[0].description + '\n';
                       
                       var i = 1;
@@ -98,14 +97,16 @@ var queryToSlack = function (q, n) {
                         i++;
                       }
                       
+                      console.log(articles);
+                      
                       return articles;
                     
                     } else { 
                       
                       console.log('No articles found');
-                      articles = 'No articles on MetLife this week.'
+                      var noArticles = 'No articles on ' + q + ' found this week';
                       
-                      return articles;
+                      return noArticles;
                       
                            }
                    
