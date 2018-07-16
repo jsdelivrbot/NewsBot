@@ -1,11 +1,7 @@
 /*
 
-WHAT IS THIS?
-
-This module demonstrates simple uses of Botkit's conversation system.
-
-In this example, Botkit hears a keyword, then asks a question. Different paths
-through the conversation are chosen based on the user's response.
+MetBot responds with the top 3 articles on MetLife and the top 3 articles on 
+insurance from Google's news API
 
 */
 
