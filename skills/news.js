@@ -18,16 +18,14 @@ module.exports = function(controller) {
                   
                   
                   //console.log(metNews);
-                    var out = '"attachments": [' + metNews + ']';
+                    var out = '\{attachments:\[' + metNews + '\]\}';
                     
                     console.log(out);
+                  
+                  bot.reply(message, out);
                 
                 });
-              
-                //var insuranceNews = queryToSlack('Insurance', 3);
-                //console.log(insuranceNews);
-                      
-                convo.stop();
+      
           
         });
 
@@ -89,27 +87,27 @@ function queryToSlack(q, n) {
                     if(response.articles[0].title){
                       
                       var i = 0;
-                      var articles;
+                      var articles = '';
                       
                       while(i < n - 1 && n <= response.totalResults){
-                        articles = articles + '\{\n"fallback": "News on ' + q + '"' +
-                          ',\n"color": "' + color + 
-                          '",\n"author_name": "' + response.articles[i].source.name + 
-                          '",\n"title": "' + response.articles[i].title + 
-                          '",\n"title_link": "' + response.articles[i].url + 
-                          '",\n"text": "' + response.articles[i].description +
-                          '",\n"ts": "123456789"\n},\n';
+                        articles = articles + '\{\nfallback: "News on ' + q + '"' +
+                          ',\ncolor: "' + color + 
+                          '",\nauthor_name: "' + response.articles[i].source.name + 
+                          '",\ntitle: "' + response.articles[i].title + 
+                          '",\ntitle_link: "' + response.articles[i].url + 
+                          '",\ntext: "' + response.articles[i].description +
+                          '",\nts: "123456789"\n},\n';
                         
                         i++;
                       }
                       
-                      articles = articles + '\{\n"fallback": "News on ' + q + '"' +
-                          ',\n"color": "' + color + 
-                          '",\n"author_name": "' + response.articles[i].source.name + 
-                          '",\n"title": "' + response.articles[i].title + 
-                          '",\n"title_link": "' + response.articles[i].url + 
-                          '",\n"text": "' + response.articles[i].description +
-                          '",\n"ts": "123456789"\n}';
+                      articles = articles + '\{\nfallback: "News on ' + q + '"' +
+                          ',\ncolor: "' + color + 
+                          '",\nauthor_name: "' + response.articles[i].source.name + 
+                          '",\ntitle: "' + response.articles[i].title + 
+                          '",\ntitle_link: "' + response.articles[i].url + 
+                          '",\ntext: "' + response.articles[i].description +
+                          '",\nts: "123456789"\n}';
                         
                       
                       return articles;
