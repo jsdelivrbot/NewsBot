@@ -108,7 +108,7 @@ function queryToSlack(q, n) {
                           ',\n"title": ' + response.articles[i].title + 
                           ',\n"title_link": ' + response.articles[i].url + 
                           ',\n"text": ' + response.articles[i].description,
-                          ',\n"ts": 123456789}';
+                          ',\n"ts": 123456789\}';
                         
                         console.log(articles);
                         
