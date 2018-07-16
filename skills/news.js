@@ -74,12 +74,11 @@ module.exports = function(controller) {
                         insuranceArticles = insuranceArticles + '<'+ response.articles[i].url + '|*' + response.articles[i].title + '*>\n*' + 
                           response.articles[i].source.name + '*\n' + response.articles[i].description + '\n';
                         
-                        console.log(i);
-                        
                         i++;
                       }
-                         
-                    
+                      
+                      console.log(insuranceArticles);
+                      
                     } else { 
                       
                       console.log('No articles found');
@@ -121,11 +120,10 @@ module.exports = function(controller) {
                         metArticles = metArticles + '<'+ response.articles[i].url + '|*' + response.articles[i].title + '*>\n*' + 
                           response.articles[i].source.name + '*\n' + response.articles[i].description + '\n';
                         
-                        console.log(i);
-                        
                         i++;
                       }
-                         
+                      
+                      console.log(metArticles);
                     
                     } else { 
                       
