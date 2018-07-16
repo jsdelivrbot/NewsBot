@@ -17,14 +17,22 @@ module.exports = function(controller) {
                 queryToSlack('MetLife', 3).then(function (metNews) {
                 
                   console.log(metNews);
+                  
+                  queryToSlack('Insurance', 3).then(function (insuranceNews) {
+                    
+                  
+                    bot.reply(message, {
+                              
+                             "text":  metNews + insuranceNews
+                      
+                    });
+                  
+                  });
                 
                 });
-    
               
                 //var insuranceNews = queryToSlack('Insurance', 3);
                 //console.log(insuranceNews);
-          
-                
                       
                 convo.stop();
           
