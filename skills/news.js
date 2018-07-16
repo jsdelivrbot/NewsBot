@@ -20,18 +20,17 @@ module.exports = function(controller) {
                     
                     console.log(metNews);
                   
-                    var message = '"attachments": [' + 
+                    //var message = '"attachments": [' + 
                                           metNews +
                                           ']'
                     
-                    console.log(message);
+                    //console.log(message);
                     
                     bot.reply(message, {
                       
                           "attachments": [
                                 
-                            {
-                            "fallback": "News on MetLife",
+                            {"fallback": "News on MetLife",
 
                             "color": "#a4ce4e",
 
@@ -80,7 +79,7 @@ module.exports = function(controller) {
 
                             "ts": "123456789"
 
-                            }
+                            },
                           ]
                       
                     });
@@ -152,17 +151,11 @@ function queryToSlack(q, n) {
                     else { color = "#000000"; }
                     
                     if(response.articles[0].title){
-                          
-                     var articles = '\{"fallback": "News on ' + q + '"' +
-                          ',\n"color": "' + color + 
-                          '",\n"author_name": "' + response.articles[0].source.name + 
-                          '",\n"title": "' + response.articles[0].title + 
-                          '",\n"title_link": "' + response.articles[0].url + 
-                          '",\n"text": "' + response.articles[0].description +
-                          '",\n"ts": "123456789"\},\n';
                       
-                      var i = 1;
-                      while(i < n){
+                      var i = 0;
+                      var articles;
+                      
+                      while(i < n - 1 && n <= response.totalResults){
                         articles = articles + '\{\n"fallback": "News on ' + q + '"' +
                           ',\n"color": "' + color + 
                           '",\n"author_name": "' + response.articles[i].source.name + 
