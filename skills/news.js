@@ -92,51 +92,6 @@ module.exports = function(controller) {
                   
                 });
           
-                newsapi.v2.everything({
-                  
-                  q: 'Insurance',
-                  
-                  from: weekAgo,
-                  
-                  to: today,
-                  
-                  language: 'en',
-                  
-                  sortBy: 'popularity',
-                  
-                  page: 1
-                  
-                }).then(response => {
-                  
-                    if(response.articles[0].title){
-                    
-                      console.log(response.totalResults + " articles found");
-                          
-                      insuranceArticles = '<'+ response.articles[0].url + '|*' + response.articles[0].title + '*>\n*' + 
-                          response.articles[0].source.name + '*\n' + response.articles[0].description + '\n';
-                      
-                      var i = 1;
-                      while(i < 3){
-                        insuranceArticles = insuranceArticles + '<'+ response.articles[i].url + '|*' + response.articles[i].title + '*>\n*' + 
-                          response.articles[i].source.name + '*\n' + response.articles[i].description + '\n';
-                        
-                        console.log(i);
-                        
-                        i++;
-                      }
-                         
-                    
-                    } else { 
-                      
-                      console.log('No articles found');
-                      
-                      convo.say('There were no top articles on insurance this week'); 
-                      convo.next();
-                      
-                           }
-                   
-                  
-                });
                 
                 newsapi.v2.everything({
                   
@@ -175,9 +130,7 @@ module.exports = function(controller) {
                     } else { 
                       
                       console.log('No articles found');
- 
-                      convo.say('There were no top articles on MetLife this week'); 
-                      convo.next();
+                      metArticles = 'No articles on MetLife this week.'
                       
                            }
                    
