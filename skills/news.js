@@ -23,7 +23,7 @@ module.exports = function(controller) {
                   
                     bot.reply(message, {
                               
-                             "text":  'News on MetLife\n' + metNews + 'News on Insurance\n' + insuranceNews
+                             "attachments": [ metNews ]
                       
                     });
                   
@@ -97,20 +97,23 @@ function queryToSlack(q, n) {
                     
                       console.log(response.totalResults + " articles found");
                           
-                     var articles = '<'+ response.articles[0].url + '|*' + response.articles[0].title + '*>\n*' + 
-                          response.articles[0].source.name + '*\n' + response.articles[0].description + '\n';
+                     var articles = '\{"fallback": "News on ' + q + '"' +
+                          ',\n"color": "' + color + 
+                          '",\n"author_name": "' + response.articles[0].source.name + 
+                          '",\n"title": "' + response.articles[0].title + 
+                          '",\n"title_link": "' + response.articles[0].url + 
+                          '",\n"text": "' + response.articles[0].description +
+                          '",\n"ts": "123456789"\}\n';
                       
                       var i = 1;
                       while(i < n){
-                        articles = articles + '\{"fallback": "News on"' + q + 
-                          ',\n"color": ' + color + 
-                          ',\n"author_name": ' + response.articles[i].source.name + 
-                          ',\n"title": ' + response.articles[i].title + 
-                          ',\n"title_link": ' + response.articles[i].url + 
-                          ',\n"text": ' + response.articles[i].description,
-                          ',\n"ts": 123456789\}';
-                        
-                        console.log(articles);
+                        articles = articles + '\{"fallback": "News on ' + q + '"' +
+                          ',\n"color": "' + color + 
+                          '",\n"author_name": "' + response.articles[i].source.name + 
+                          '",\n"title": "' + response.articles[i].title + 
+                          '",\n"title_link": "' + response.articles[i].url + 
+                          '",\n"text": "' + response.articles[i].description +
+                          '",\n"ts": "123456789"\}\n';
                         
                         i++;
                       }
