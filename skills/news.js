@@ -18,30 +18,30 @@ module.exports = function(controller) {
                   
                   queryToSlack('Insurance', 3).then(function (insuranceNews) {
                     
+                    console.log(metNews);
                   
                     bot.reply(message, {
                               
-                             //"attachments": [ metNews ]
+                            "attachments": [ metNews ]
                       
-                      "attachments" : [
+                     /* "attachments" : [
                         
+                        {"fallback": "News on MetLife",
+
+                        "color": "#a4ce4e",
+
+                        "author_name": "Gizmodo.com",
+
+                        "title": "LifeLock Still Gives NRA Discount It Said It Ended After Parkland School Shooting",
+
+                        "title_link": "https://gizmodo.com/lifelock-still-gives-nra-discount-it-said-it-ended-afte-1827556508",
+
+                        "text": "After the Parkland, Florida, school shooting last year, in which 17 students and staff at Marjory Stoneman Douglas High School were killed, a slew of companies sought to distance themselves from the National Rifle Association. Read more...",
+
+                        "ts": "123456789"},
+
                         {
-                          "fallback": "News on MetLife",
 
-                          "color": "#a4ce4e",
-
-                          "author_name": "Gizmodo.com",
-
-                          "title": "LifeLock Still Gives NRA Discount It Said It Ended After Parkland School Shooting",
-
-                          "title_link": "https://gizmodo.com/lifelock-still-gives-nra-discount-it-said-it-ended-afte-1827556508",
-
-                          "text": "After the Parkland, Florida, school shooting last year, in which 17 students and staff at Marjory Stoneman Douglas High School were killed, a slew of companies sought to distance themselves from the National Rifle Association. Read more...",
-
-                          "ts": "123456789"
-                        },
-                        
-                        {
                         "fallback": "News on MetLife",
 
                         "color": "#a4ce4e",
@@ -55,9 +55,28 @@ module.exports = function(controller) {
                         "text": "Decades of pro wrestling history were upended via joint press release on Thursday when Ring of Honor, New Japan, and Madison Square Garden announced a joint show at “The World’s Most Famous Arena” for April 6, 2019. Unless an unannounced (but previously repor…",
 
                         "ts": "123456789"
-                        }
+
+                        },
+
+                        {
+
+                        "fallback": "News on MetLife",
+
+                        "color": "#a4ce4e",
+
+                        "author_name": "Smallbiztrends.com",
+
+                        "title": "Job Market Remains Tight Despite Swelling Labor Force, SBE Council Reports",
+
+                        "title_link": "https://smallbiztrends.com/2018/07/2018-june-jobs-report.html",
+
+                        "text": "According to the 2018 June Jobs Report, one of the challenges small businesses are facing in finding talent to spur some growth is a thin pool of talent.",
+
+                        "ts": "123456789"
+
+                        },
                       
-                      ]
+                      ]*/
                       
                     });
                   
@@ -137,22 +156,20 @@ function queryToSlack(q, n) {
                           '",\n"title": "' + response.articles[0].title + 
                           '",\n"title_link": "' + response.articles[0].url + 
                           '",\n"text": "' + response.articles[0].description +
-                          '",\n"ts": "123456789"\}\n';
+                          '",\n"ts": "123456789"\},\n';
                       
                       var i = 1;
                       while(i < n){
-                        articles = articles + '\{"fallback": "News on ' + q + '"' +
+                        articles = articles + '\{\n"fallback": "News on ' + q + '"' +
                           ',\n"color": "' + color + 
                           '",\n"author_name": "' + response.articles[i].source.name + 
                           '",\n"title": "' + response.articles[i].title + 
                           '",\n"title_link": "' + response.articles[i].url + 
                           '",\n"text": "' + response.articles[i].description +
-                          '",\n"ts": "123456789"\},\n';
+                          '",\n"ts": "123456789"\n},\n';
                         
                         i++;
                       }
-                      
-                      console.log(articles);
                       
                       return articles;
                     
