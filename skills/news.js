@@ -23,7 +23,7 @@ module.exports = function(controller) {
                   
                     bot.reply(message, {
                               
-                             "text":  metNews + insuranceNews
+                             "text":  'News on MetLife\n' + metNews + 'News on Insurance\n' + insuranceNews
                       
                     });
                   
@@ -87,6 +87,12 @@ function queryToSlack(q, n) {
                   
                 }).then(response => {
                   
+                    var color;
+    
+                    if(q == 'Insurance'){ color = "#0090da"; }
+                    else if(q == 'MetLife') { color = "#a4ce4e"; }
+                    else { color = "#000000"; }
+                    
                     if(response.articles[0].title){
                     
                       console.log(response.totalResults + " articles found");
@@ -98,6 +104,32 @@ function queryToSlack(q, n) {
                       while(i < n){
                         articles = articles + '<'+ response.articles[i].url + '|*' + response.articles[i].title + '*>\n*' + 
                           response.articles[i].source.name + '*\n' + response.articles[i].description + '\n';
+                        
+                        [
+                          {
+                              "fallback": "News on " + q + ".",
+                              "color": color,
+                              "pretext": "Optional text that appears above the attachment block",
+                              "author_name": "Bobby Tables",
+                              "author_link": "http://flickr.com/bobby/",
+                              "author_icon": "http://flickr.com/icons/bobby.jpg",
+                              "title": "Slack API Documentation",
+                              "title_link": "https://api.slack.com/",
+                              "text": "Optional text that appears within the attachment",
+                              "fields": [
+                                  {
+                                      "title": "Priority",
+                                      "value": "High",
+                                      "short": false
+                                  }
+                              ],
+                              "image_url": "http://my-website.com/path/to/image.jpg",
+                              "thumb_url": "http://example.com/path/to/thumb.png",
+                              "footer": "Slack API",
+                              "footer_icon": "https://platform.slack-edge.com/img/default_application_icon.png",
+                              "ts": 123456789
+                          }
+                      ]
                         
                         i++;
                       }
