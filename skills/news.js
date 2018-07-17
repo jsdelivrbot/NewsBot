@@ -19,59 +19,7 @@ module.exports = function(controller) {
                   
                   console.log(metNews);
             
-                  var news = [{
-
-fallback: "News on MetLife",
-
-color: "#a4ce4e",
-
-author_name: "Gizmodo.com",
-
-title: "LifeLock Still Gives NRA Discount It Said It Ended After Parkland School Shooting",
-
-title_link: "https://gizmodo.com/lifelock-still-gives-nra-discount-it-said-it-ended-afte-1827556508",
-
-text: "After the Parkland, Florida, school shooting last year, in which 17 students and staff at Marjory Stoneman Douglas High School were killed, a slew of companies sought to distance themselves from the National Rifle Association. Read more...",
-
-ts: "123456789"
-
-},
-
-{
-
-fallback: "News on MetLife",
-
-color: "#a4ce4e",
-
-author_name: "Deadspin.com",
-
-title: "ROH And NJPW Just Ended WWE's 58-Year Stranglehold On Madison Square Garden",
-
-title_link: "https://deadspin.com/roh-njpw-just-ended-wwes-58-year-stranglehold-on-madi-1827579733",
-
-text: "Decades of pro wrestling history were upended via joint press release on Thursday when Ring of Honor, New Japan, and Madison Square Garden announced a joint show at “The World’s Most Famous Arena” for April 6, 2019. Unless an unannounced (but previously repor…",
-
-ts: "123456789"
-
-},
-
-{
-
-fallback: "News on MetLife",
-
-color: "#a4ce4e",
-
-author_name: "Si.com",
-
-title: "Woody Johnson, New York Jets",
-
-title_link: "https://www.si.com/nfl/new-york-jets-owner-woody-johnson",
-
-text: "Learn about New York Jets owner Woody Johnson, including how he made his wealth, his education and more.",
-
-ts: "123456789"
-
-}];
+                  var news = [ metNews ];
                   console.log(news);
                   
                   bot.reply(message, { attachments: news });
@@ -139,27 +87,27 @@ function queryToSlack(q, n) {
                     if(response.articles[0].title){
                       
                       var i = 0;
-                      var articles = '[';
+                      var articles = '';
                       
                       while(i < n - 1 && n <= response.totalResults){
                         articles = articles + {fallback: 'News on' + q,
                           color: color,
-                          author_name: "' + response.articles[i].source.name + 
-                          '",\ntitle: "' + response.articles[i].title + 
-                          '",\ntitle_link: "' + response.articles[i].url + 
-                          '",\ntext: "' + response.articles[i].description +
-                          '",\nts: "123456789"\n},\n';
+                          author_name: response.articles[i].source.name, 
+                          title: response.articles[i].title,
+                          title_link: response.articles[i].url, 
+                          text: response.articles[i].description,
+                          ts: 123456789},
                         
                         i++;
                       }
                       
-                      articles = articles + '\{\nfallback: "News on ' + q + '"' +
-                          ',\ncolor: "' + color + 
-                          '",\nauthor_name: "' + response.articles[i].source.name + 
-                          '",\ntitle: "' + response.articles[i].title + 
-                          '",\ntitle_link: "' + response.articles[i].url + 
-                          '",\ntext: "' + response.articles[i].description +
-                          '",\nts: "123456789"\n}';
+                      articles = articles + {fallback: 'News on' + q,
+                          color: color,
+                          author_name: response.articles[i].source.name, 
+                          title: response.articles[i].title,
+                          title_link: response.articles[i].url, 
+                          text: response.articles[i].description,
+                          ts: 123456789}
                         
                       
                       return articles;
