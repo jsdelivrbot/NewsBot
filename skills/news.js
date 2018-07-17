@@ -16,22 +16,11 @@ module.exports = function(controller) {
 
                 queryToSlack('MetLife', 3).then(function (metNews) {
                   
-                  var news = metNews;
+                  queryToSlack('Insurance', 3).then(function (insuranceNews) {
                   
                   
-                  
-                  
-                  
-                  bot.reply(message, { attachments: [{
+                  bot.reply(message, { attachments: metNews });
                     
-                          fallback: news,
-                          color: color,
-                          author_name: response.articles[0].source.name, 
-                          title: response.articles[0].title,
-                          title_link: response.articles[0].url, 
-                          text: response.articles[0].description,
-                          ts: 123456789 
-                          }]
                   });
                 
                 });
