@@ -17,14 +17,9 @@ module.exports = function(controller) {
                 queryToSlack('MetLife', 3).then(function (metNews) {
                   
                   
-                  //console.log(metNews);
-                    //var out = '\{\nattachments:\n\[\n' + metNews + '\n\]\n\}';
-                    
-                    //console.log(out);
-                  var news = metNews
-                  console.log(news);
-                  bot.reply(message, {
-attachments: [{
+                  console.log(metNews);
+            
+                  var news = [{
 
 fallback: "News on MetLife",
 
@@ -76,9 +71,10 @@ text: "Learn about New York Jets owner Woody Johnson, including how he made his 
 
 ts: "123456789"
 
-}]
-
-});
+}];
+                  console.log(news);
+                  
+                  bot.reply(message, { attachments: news });
                 
                 });
       
@@ -143,12 +139,12 @@ function queryToSlack(q, n) {
                     if(response.articles[0].title){
                       
                       var i = 0;
-                      var articles = '';
+                      var articles = '[';
                       
                       while(i < n - 1 && n <= response.totalResults){
-                        articles = articles + '\{\nfallback: "News on ' + q + '"' +
-                          ',\ncolor: "' + color + 
-                          '",\nauthor_name: "' + response.articles[i].source.name + 
+                        articles = articles + {fallback: 'News on' + q,
+                          color: color,
+                          author_name: "' + response.articles[i].source.name + 
                           '",\ntitle: "' + response.articles[i].title + 
                           '",\ntitle_link: "' + response.articles[i].url + 
                           '",\ntext: "' + response.articles[i].description +
