@@ -20,7 +20,7 @@ module.exports = function(controller) {
                   
                     var news = metNews.concat(insuranceNews);
                     
-                    bot.reply(message, { attachments: news });
+                    bot.reply(message, { text: '*Top news this week*', attachments: news });
                     
                   });
                 
