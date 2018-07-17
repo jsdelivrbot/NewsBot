@@ -96,7 +96,7 @@ function queryToSlack(q, n) {
                           title: response.articles[i].title,
                           title_link: response.articles[i].url, 
                           text: response.articles[i].description,
-                          ts: 123456789});
+                          ts: ((new Date(response.articles[i].publishedAt)).getTime()) /1000});
                         
                         i++;
                       }
@@ -107,7 +107,7 @@ function queryToSlack(q, n) {
                           title: response.articles[i].title,
                           title_link: response.articles[i].url, 
                           text: response.articles[i].description,
-                          ts: 123456789});
+                          ts: ((new Date(response.articles[i].publishedAt)).getTime()) /1000});
                         
                       
                       return articles;
