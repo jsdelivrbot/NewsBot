@@ -16,13 +16,17 @@ module.exports = function(controller) {
 
                 queryToSlack('MetLife', 3).then(function (metNews) {
                   
+                  var news = JSON.parse(metNews);
+          
                   
-                  console.log(metNews);
-            
-                  var news = [ metNews ];
-                  console.log(news);
                   
-                  bot.reply(message, { attachments: news });
+                  bot.reply(message, { attachments: [fallback: 'News on' + q,
+                          color: color,
+                          author_name: response.articles[i].source.name, 
+                          title: response.articles[i].title,
+                          title_link: response.articles[i].url, 
+                          text: response.articles[i].description,
+                          ts: 123456789 }]);
                 
                 });
       
@@ -110,7 +114,7 @@ function queryToSlack(q, n) {
                           ts: 123456789}
                         
                       
-                      return articles;
+                      return JSON.stringify(articles);
                     
                     } else { 
                       
