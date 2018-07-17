@@ -16,8 +16,10 @@ module.exports = function(controller) {
 
                 queryToSlack('MetLife', 3).then(function (metNews) {
                   
-                  var news = JSON.parse(metNews);
-          
+                  var news = metNews;
+                  
+                  
+                  
                   
                   
                   bot.reply(message, { attachments: [{
@@ -95,30 +97,30 @@ function queryToSlack(q, n) {
                     if(response.articles[0].title){
                       
                       var i = 0;
-                      var articles = 'attachments';
+                      var articles = [];
                       
                       while(i < n - 1 && n <= response.totalResults){
-                        articles = articles + {fallback: 'News on' + q,
+                        articles.push({fallback: 'News on' + q,
                           color: color,
                           author_name: response.articles[i].source.name, 
                           title: response.articles[i].title,
                           title_link: response.articles[i].url, 
                           text: response.articles[i].description,
-                          ts: 123456789},
+                          ts: 123456789});
                         
                         i++;
                       }
                       
-                      articles = articles + {fallback: 'News on' + q,
+                      articles.push({fallback: 'News on' + q,
                           color: color,
                           author_name: response.articles[i].source.name, 
                           title: response.articles[i].title,
                           title_link: response.articles[i].url, 
                           text: response.articles[i].description,
-                          ts: 123456789}
+                          ts: 123456789});
                         
                       
-                      return JSON.stringify(articles);
+                      return articles;
                     
                     } else { 
                       
