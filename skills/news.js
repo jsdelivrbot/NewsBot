@@ -20,13 +20,17 @@ module.exports = function(controller) {
           
                   
                   
-                  bot.reply(message, { attachments: [fallback: 'News on' + q,
+                  bot.reply(message, { attachments: [{
+                    
+                          fallback: news,
                           color: color,
-                          author_name: response.articles[i].source.name, 
-                          title: response.articles[i].title,
-                          title_link: response.articles[i].url, 
-                          text: response.articles[i].description,
-                          ts: 123456789 }]);
+                          author_name: response.articles[0].source.name, 
+                          title: response.articles[0].title,
+                          title_link: response.articles[0].url, 
+                          text: response.articles[0].description,
+                          ts: 123456789 
+                          }]
+                  });
                 
                 });
       
@@ -91,7 +95,7 @@ function queryToSlack(q, n) {
                     if(response.articles[0].title){
                       
                       var i = 0;
-                      var articles = '';
+                      var articles = 'attachments';
                       
                       while(i < n - 1 && n <= response.totalResults){
                         articles = articles + {fallback: 'News on' + q,
