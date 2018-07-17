@@ -18,8 +18,9 @@ module.exports = function(controller) {
                   
                   queryToSlack('Insurance', 3).then(function (insuranceNews) {
                   
-                  
-                  bot.reply(message, { attachments: metNews });
+                    var news = metNews.concat(insuranceNews);
+                    
+                    bot.reply(message, { attachments: news });
                     
                   });
                 
